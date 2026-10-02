@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk - Jaya Kitchen Lombok</title>
+    <link rel="icon" href="assets/images/logo.jpg">
+    <meta name="description" content="Jaya Kitchen Lombok adalah supplier peralatan dapur komersial dan pendingin komersial terpercaya di Lombok. Kami menyediakan brand unggulan seperti GEA, GETRA, dan RSA.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #0A3D6B;
+            --primary-light: #1A609E;
+            --secondary: #F04F23;
+            --text-main: #1A1A1A;
+            --text-muted: #666666;
+            --bg-light: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--bg-white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .nav-logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: -5px;
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .btn-contact {
+            background: var(--secondary);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .nav-links a.btn-contact::after {
+            display: none;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(240, 79, 35, 0.4);
+            background: #e0441c;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            background: var(--bg-light);
+            padding: 60px 5%;
+            text-align: center;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Filter Controls */
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 40px 0;
+            padding: 0 5%;
+        }
+
+        .filter-btn {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 8px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--font-body);
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-img {
+            height: 250px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .product-img::after {
+            content: '\f00e'; /* fa-magnifying-glass-plus */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(10, 61, 107, 0.6);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            opacity: 0;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img::after {
+            opacity: 1;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .product-card:hover .product-img img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-brand {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .product-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-ask {
+            display: block;
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: #25d366; /* WhatsApp Green */
+            color: white;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn-ask:hover {
+            background: #128C7E;
+            transform: translateY(-2px);
+        }
+
+        /* Lightbox (Modal) */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .lightbox-close:hover {
+            color: var(--secondary);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        .footer {
+            background: #111;
+            color: white;
+            padding: 80px 5% 40px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 60px;
+        }
+
+        .footer-about .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .footer-about p {
+            color: #999;
+            margin-bottom: 20px;
+            max-width: 400px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-title {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-contact ul, .footer-schedule ul {
+            list-style: none;
+        }
+
+        .footer-contact li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: #999;
+        }
+        
+        .footer-schedule li {
+            display: flex;
+            justify-content: space-between;
+            color: #999;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .float-wa:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 30px 5%;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+                transition: all 0.4s ease;
+                gap: 20px;
+            }
+            .nav-links.active {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            }
+            .mobile-menu-btn { display: block; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .float-wa { width: 50px; height: 50px; bottom: 20px; right: 20px; font-size: 25px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="assets/images/logo.jpg" alt="Jaya Kitchen Logo" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="index.html#home">Home</a>
+            <a href="index.html#about">Tentang Kami</a>
+            <a href="product.html" style="color: var(--secondary);">Produk & Brand</a>
+            <a href="sosmed.html">Social Media</a>
+            <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-contact"><i class="fa-brands fa-whatsapp"></i> Hubungi Kami</a>
+        </div>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Katalog Produk</h1>
+        <p>Temukan berbagai peralatan dapur komersial dan pendingin dengan kualitas terbaik untuk kebutuhan bisnis Anda.</p>
+    </header>
+
+    <!-- Filter -->
+    <div class="filter-controls" id="filterContainer">
+        <button class="filter-btn active" data-filter="all">Semua Produk</button>
+        <button class="filter-btn" data-filter="gea">GEA</button>
+        <button class="filter-btn" data-filter="getra">GETRA</button>
+        <button class="filter-btn" data-filter="rsa">RSA</button>
+        <button class="filter-btn" data-filter="crown">CROWN</button>
+        <button class="filter-btn" data-filter="mito">MITO</button>
+        <button class="filter-btn" data-filter="robotcoupe">ROBOT COUPE</button>
+        <button class="filter-btn" data-filter="fomac">FOMAC</button>
+        <button class="filter-btn" data-filter="philips">PHILIPS</button>
+        <button class="filter-btn" data-filter="rinnai">RINNAI</button>
+        <button class="filter-btn" data-filter="meichu">MEICHU</button>
+        <button class="filter-btn" data-filter="starcool">STAR COOL</button>
+        <button class="filter-btn" data-filter="zeppelin">ZEPPELIN</button>
+        <button class="filter-btn" data-filter="hoshizaki">HOSHIZAKI</button>
+        <button class="filter-btn" data-filter="nayati">NAYATI</button>
+        <button class="filter-btn" data-filter="sinmag">SINMAG</button>
+    </div>
+
+    <!-- Products Grid -->
+    <section class="products-grid" id="productsGrid">
+        
+        <!-- Product 1 -->
+        <div class="product-card" data-brand="gea">
+            <div class="product-img" onclick="openLightbox('assets/images/gea.jpg')">
+                <img src="assets/images/gea.jpg" alt="GEA Upright Refrigerator">
+            </div>
+            <div class="product-info">
+                <span class="product-brand">GEA</span>
+                <h3 class="product-title">Upright Chiller / Freezer</h3>
+                <p class="product-desc">Pendingin komersial stainless steel dengan pintu kaca ganda, cocok untuk restoran dan dapur profesional.</p>
+                <a href="https://api.whatsapp.com/send?phone=628113970087&text=Halo%20Jaya%20Kitchen,%20saya%20ingin%20tanya%20tentang%20produk%20GEA%20Upright%20Chiller." class="btn-ask" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Tanya Produk Ini
+                </a>
+            </div>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card" data-brand="getra">
+            <div class="product-img" onclick="openLightbox('assets/images/getra.jpg')">
+                <img src="assets/images/getra.jpg" alt="GETRA Gas Range Oven">
+            </div>
+            <div class="product-info">
+                <span class="product-brand">GETRA</span>
+                <h3 class="product-title">Gas Range Oven</h3>
+                <p class="product-desc">Kombinasi kompor gas tugas berat dan oven stainless steel. Sangat handal untuk memasak dalam skala besar.</p>
+                <a href="https://api.whatsapp.com/send?phone=628113970087&text=Halo%20Jaya%20Kitchen,%20saya%20ingin%20tanya%20tentang%20produk%20GETRA%20Gas%20Range%20Oven." class="btn-ask" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Tanya Produk Ini
+                </a>
+            </div>
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product-card" data-brand="rsa">
+            <div class="product-img" onclick="openLightbox('assets/images/rsa.jpg')">
+                <img src="assets/images/rsa.jpg" alt="RSA Chest Freezer">
+            </div>
+            <div class="product-info">
+                <span class="product-brand">RSA</span>
+                <h3 class="product-title">Chest Freezer</h3>
+                <p class="product-desc">Peti pembeku (freezer) berkualitas tinggi untuk menyimpan daging, es krim, dan makanan beku lainnya.</p>
+                <a href="https://api.whatsapp.com/send?phone=628113970087&text=Halo%20Jaya%20Kitchen,%20saya%20ingin%20tanya%20tentang%20produk%20RSA%20Chest%20Freezer." class="btn-ask" target="_blank">
+                    <i class="fa-brands fa-whatsapp"></i> Tanya Produk Ini
+                </a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()"><i class="fa-solid fa-xmark"></i></span>
+            <img src="" alt="Preview" class="lightbox-img" id="lightboxImg">
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="footer-grid">
+            <div class="footer-about">
+                <div class="logo">
+                    <img src="assets/images/logo.jpg" alt="Jaya Kitchen Logo" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
+                </div>
+                <p>Kitchen Equipment & Commercial Refrigeration Supplier untuk daerah Lombok, Nusa Tenggara Barat dan sekitarnya.</p>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/jayakitchenlombok/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="mailto:jayakitchenlombok@gmail.com"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-contact">
+                <h4 class="footer-title">Informasi Kontak</h4>
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>Jl. A.A. Gde Ngurah no 99, Cakranegara<br>Lombok, Nusa Tenggara Barat<br>Indonesia</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span><a href="tel:08113970087">081 139 700 87</a></span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span><a href="mailto:jayakitchenlombok@gmail.com">jayakitchenlombok@gmail.com</a></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="footer-schedule">
+                <h4 class="footer-title">Jam Operasional</h4>
+                <ul>
+                    <li>
+                        <span>Senin - Sabtu</span>
+                        <span>08.00 - 17.00</span>
+                    </li>
+                    <li>
+                        <span>Minggu</span>
+                        <span>Tutup</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Google Maps Iframe Placeholder -->
+        <div class="footer-map" style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <!-- Silakan ganti link "src" di bawah ini dengan link embed map toko Anda -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.109355152285!2d116.12644267597334!3d-8.585521791458532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0!2sJaya%20Kitchen!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid" width="100%" height="350" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 Jaya Kitchen Lombok. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send?phone=628113970087" class="float-wa" target="_blank" aria-label="Chat with us on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+                
+                const filterValue = btn.getAttribute('data-filter');
+                
+                productCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-brand') === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Handle URL Hash for filtering on load (e.g. product.html#gea)
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && ['gea', 'getra', 'rsa', 'crown', 'mito', 'robotcoupe', 'fomac', 'philips', 'rinnai', 'meichu', 'starcool', 'zeppelin', 'hoshizaki', 'nayati', 'sinmag'].includes(hash)) {
+                const btn = document.querySelector(`.filter-btn[data-filter="${hash}"]`);
+                if(btn) btn.click();
+            }
+        });
+
+        // Lightbox Functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightboxImg');
+
+        function openLightbox(imgSrc) {
+            lightboxImg.src = imgSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restore scrolling
+        }
+        
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>

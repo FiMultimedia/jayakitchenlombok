@@ -1,24 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jaya Kitchen Lombok - Kitchen Equipment & Commercial Refrigeration Supplier</title>
-    <meta name="description" content="Jaya Kitchen Lombok adalah supplier peralatan dapur komersial dan pendingin komersial terpercaya di Lombok. Kami menyediakan brand unggulan seperti GEA, GETRA, dan RSA.">
-    
+    <link rel="icon" href="assets/images/logo.jpg">
+    <meta name="description"
+        content="Jaya Kitchen Lombok adalah supplier peralatan dapur komersial dan pendingin komersial terpercaya di Lombok. Kami menyediakan brand unggulan seperti GEA, GETRA, dan RSA.">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary: #0A3D6B; /* Deep Blue, similar to premium equipment brands */
+            --primary: #0A3D6B;
+            /* Deep Blue, similar to premium equipment brands */
             --primary-light: #1A609E;
-            --secondary: #F04F23; /* Energetic Orange for CTA */
+            --secondary: #F04F23;
+            /* Energetic Orange for CTA */
             --text-main: #1A1A1A;
             --text-muted: #666666;
             --bg-light: #F8F9FA;
@@ -45,7 +52,12 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             font-family: var(--font-heading);
             font-weight: 700;
             line-height: 1.2;
@@ -73,7 +85,7 @@
         .navbar.scrolled {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
             padding: 15px 5%;
         }
 
@@ -95,7 +107,7 @@
             gap: 10px;
             transition: var(--transition);
         }
-        
+
         .nav-logo i {
             color: var(--secondary);
         }
@@ -137,7 +149,7 @@
             font-weight: 600;
             transition: var(--transition);
         }
-        
+
         .nav-links a.btn-contact::after {
             display: none;
         }
@@ -152,7 +164,7 @@
         .hero {
             height: 100vh;
             min-height: 600px;
-            background: linear-gradient(to right, rgba(10, 61, 107, 0.85), rgba(10, 61, 107, 0.4)), url('hero.jpg') center/cover;
+            background: linear-gradient(to right, rgba(10, 61, 107, 0.85), rgba(10, 61, 107, 0.4)), url('assets/images/hero.jpg') center/cover;
             display: flex;
             align-items: center;
             padding: 0 5%;
@@ -176,7 +188,7 @@
 
         .badge {
             display: inline-block;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
             padding: 8px 16px;
             border-radius: 50px;
@@ -184,7 +196,7 @@
             font-weight: 600;
             letter-spacing: 1px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .hero h1 {
@@ -251,9 +263,9 @@
 
         /* Partner Brands Section */
         .brands {
-            padding: 60px 5%;
+            padding: 60px 0;
             background: var(--bg-light);
-            text-align: center;
+            overflow: hidden;
         }
 
         .brands h3 {
@@ -263,30 +275,72 @@
             font-weight: 500;
             letter-spacing: 2px;
             text-transform: uppercase;
+            text-align: center;
         }
 
-        .brand-logos {
+        .brand-ticker {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .brand-ticker::before,
+        .brand-ticker::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 100%;
+            z-index: 2;
+        }
+
+        .brand-ticker::before {
+            left: 0;
+            background: linear-gradient(to right, var(--bg-light) 0%, transparent 100%);
+        }
+
+        .brand-ticker::after {
+            right: 0;
+            background: linear-gradient(to left, var(--bg-light) 0%, transparent 100%);
+        }
+
+        .brand-ticker-track {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
+            width: fit-content;
+            animation: scrollBrands 40s linear infinite;
+        }
+
+        .brand-ticker-track:hover {
+            animation-play-state: paused;
         }
 
         .brand-item {
             font-family: var(--font-heading);
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 800;
             color: var(--primary-light);
-            opacity: 0.6;
+            opacity: 0.5;
             transition: var(--transition);
             filter: grayscale(100%);
+            padding: 0 40px;
+            white-space: nowrap;
         }
 
         .brand-item:hover {
             opacity: 1;
             filter: grayscale(0%);
             transform: scale(1.05);
+            color: var(--primary);
+        }
+
+        @keyframes scrollBrands {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         /* About Section */
@@ -302,12 +356,12 @@
             position: relative;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             transform: translateX(-50px);
             opacity: 0;
             transition: all 1s ease;
         }
-        
+
         .about-img.visible {
             transform: translateX(0);
             opacity: 1;
@@ -324,7 +378,7 @@
             opacity: 0;
             transition: all 1s ease;
         }
-        
+
         .about-text.visible {
             transform: translateX(0);
             opacity: 1;
@@ -404,7 +458,7 @@
             left: -10%;
             width: 400px;
             height: 400px;
-            background: rgba(255,255,255,0.05);
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 50%;
         }
 
@@ -467,7 +521,7 @@
             width: 40px;
             height: 40px;
             border-radius: 50%;
-            background: rgba(255,255,255,0.1);
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -507,12 +561,12 @@
             margin-bottom: 20px;
             color: #999;
         }
-        
+
         .footer-contact li a {
             color: #999;
             transition: var(--transition);
         }
-        
+
         .footer-contact li a:hover {
             color: var(--secondary);
         }
@@ -532,15 +586,47 @@
             color: #999;
             margin-bottom: 15px;
             padding-bottom: 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .footer-bottom {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             color: #666;
             font-size: 0.9rem;
+        }
+
+        /* Floating WhatsApp Button */
+        .float-wa {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .float-wa:hover {
+            background-color: #128C7E;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .float-wa i {
+            margin: 0;
+            padding: 0;
         }
 
         /* Mobile Menu */
@@ -552,7 +638,7 @@
             font-size: 1.5rem;
             cursor: pointer;
         }
-        
+
         .navbar.scrolled .mobile-menu-btn {
             color: var(--text-main);
         }
@@ -561,9 +647,11 @@
             .about {
                 grid-template-columns: 1fr;
             }
+
             .hero h1 {
                 font-size: 2.8rem;
             }
+
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -578,49 +666,68 @@
                 background: white;
                 flex-direction: column;
                 padding: 30px 5%;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
                 clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
                 transition: all 0.4s ease;
                 gap: 20px;
             }
+
             .nav-links.active {
                 clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             }
+
             .nav-links a {
                 color: var(--text-main);
                 width: 100%;
                 text-align: center;
             }
+
             .mobile-menu-btn {
                 display: block;
             }
+
             .hero h1 {
                 font-size: 2.2rem;
             }
+
             .hero-btns {
                 flex-direction: column;
             }
+
             .footer-grid {
                 grid-template-columns: 1fr;
             }
+
             .features {
                 grid-template-columns: 1fr;
+            }
+
+            .float-wa {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 25px;
             }
         }
     </style>
 </head>
+
 <body>
 
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <a href="#" class="nav-logo">
-            <i class="fa-solid fa-snowflake"></i> Jaya Kitchen
+            <img src="assets/images/logo.jpg" alt="Jaya Kitchen Logo"
+                style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
         </a>
         <div class="nav-links" id="navLinks">
             <a href="#home">Home</a>
             <a href="#about">Tentang Kami</a>
-            <a href="#brands">Produk & Brand</a>
-            <a href="#contact" class="btn-contact">Hubungi Kami</a>
+            <a href="product.html">Produk & Brand</a>
+            <a href="sosmed.html">Social Media</a>
+            <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-contact"><i
+                    class="fa-brands fa-whatsapp"></i> Hubungi Kami</a>
         </div>
         <button class="mobile-menu-btn" id="mobileMenuBtn">
             <i class="fa-solid fa-bars"></i>
@@ -632,7 +739,8 @@
         <div class="hero-content">
             <div class="badge">Supplier Alat Dapur & Pendingin Komersial</div>
             <h1>Solusi Terbaik untuk <span>Dapur Komersial</span> Anda</h1>
-            <p>Jaya Kitchen Lombok adalah mitra terpercaya Anda untuk kebutuhan perlengkapan dapur komersial, restoran, cafe, dan pendingin ruangan di Nusa Tenggara Barat.</p>
+            <p>Jaya Kitchen Lombok adalah mitra terpercaya Anda untuk kebutuhan perlengkapan dapur komersial, restoran,
+                cafe, dan pendingin ruangan di Nusa Tenggara Barat.</p>
             <div class="hero-btns">
                 <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-primary">
                     <i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis
@@ -647,24 +755,57 @@
     <!-- Brands Section -->
     <section class="brands" id="brands">
         <h3>Brand Resmi & Terpercaya</h3>
-        <div class="brand-logos">
-            <div class="brand-item">GEA</div>
-            <div class="brand-item">GETRA</div>
-            <div class="brand-item">RSA</div>
+        <div class="brand-ticker">
+            <div class="brand-ticker-track">
+                <!-- Group 1 -->
+                <a href="product.html#gea" class="brand-item">GEA</a>
+                <a href="product.html#getra" class="brand-item">GETRA</a>
+                <a href="product.html#rsa" class="brand-item">RSA</a>
+                <a href="product.html#crown" class="brand-item">CROWN</a>
+                <a href="product.html#mito" class="brand-item">MITO</a>
+                <a href="product.html#robotcoupe" class="brand-item">ROBOT COUPE</a>
+                <a href="product.html#fomac" class="brand-item">FOMAC</a>
+                <a href="product.html#philips" class="brand-item">PHILIPS</a>
+                <a href="product.html#rinnai" class="brand-item">RINNAI</a>
+                <a href="product.html#meichu" class="brand-item">MEICHU</a>
+                <a href="product.html#starcool" class="brand-item">STAR COOL</a>
+                <a href="product.html#zeppelin" class="brand-item">ZEPPELIN</a>
+                <a href="product.html#hoshizaki" class="brand-item">HOSHIZAKI</a>
+                <a href="product.html#nayati" class="brand-item">NAYATI</a>
+                <a href="product.html#sinmag" class="brand-item">SINMAG</a>
+                <!-- Group 2 -->
+                <a href="product.html#gea" class="brand-item">GEA</a>
+                <a href="product.html#getra" class="brand-item">GETRA</a>
+                <a href="product.html#rsa" class="brand-item">RSA</a>
+                <a href="product.html#crown" class="brand-item">CROWN</a>
+                <a href="product.html#mito" class="brand-item">MITO</a>
+                <a href="product.html#robotcoupe" class="brand-item">ROBOT COUPE</a>
+                <a href="product.html#fomac" class="brand-item">FOMAC</a>
+                <a href="product.html#philips" class="brand-item">PHILIPS</a>
+                <a href="product.html#rinnai" class="brand-item">RINNAI</a>
+                <a href="product.html#meichu" class="brand-item">MEICHU</a>
+                <a href="product.html#starcool" class="brand-item">STAR COOL</a>
+                <a href="product.html#zeppelin" class="brand-item">ZEPPELIN</a>
+                <a href="product.html#hoshizaki" class="brand-item">HOSHIZAKI</a>
+                <a href="product.html#nayati" class="brand-item">NAYATI</a>
+                <a href="product.html#sinmag" class="brand-item">SINMAG</a>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
     <section class="about" id="about">
         <div class="about-img reveal-left">
-            <img src="hero.jpg" alt="Commercial Kitchen Equipment">
+            <img src="assets/images/hero.jpg" alt="Commercial Kitchen Equipment">
         </div>
         <div class="about-text reveal-right">
             <span class="section-subtitle">Tentang Kami</span>
             <h2>Supplier Terlengkap di Lombok</h2>
-            <p>Berkomitmen untuk memberikan layanan terbaik, Jaya Kitchen Lombok menyediakan berbagai macam perlengkapan dapur komersial dan sistem refrigerasi dengan kualitas premium.</p>
-            <p>Sebagai agen resmi untuk produk GEA, GETRA, dan RSA, kami menjamin keaslian, kualitas, serta layanan purna jual yang profesional bagi setiap klien kami.</p>
-            
+            <p>Berkomitmen untuk memberikan layanan terbaik, Jaya Kitchen Lombok menyediakan berbagai macam perlengkapan
+                dapur komersial dan sistem refrigerasi dengan kualitas premium.</p>
+            <p>Sebagai agen resmi untuk produk GEA, GETRA, dan RSA, kami menjamin keaslian, kualitas, serta layanan
+                purna jual yang profesional bagi setiap klien kami.</p>
+
             <div class="features">
                 <div class="feature-item">
                     <div class="feature-icon"><i class="fa-solid fa-award"></i></div>
@@ -702,7 +843,8 @@
     <section class="cta-banner">
         <h2>Siap Meningkatkan Performa Bisnis Anda?</h2>
         <p>Konsultasikan kebutuhan perlengkapan dapur restoran atau cafe Anda bersama tim ahli kami hari ini.</p>
-        <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-outline" style="background: white; color: var(--primary);">
+        <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-outline"
+            style="background: white; color: var(--primary);">
             <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
         </a>
     </section>
@@ -712,12 +854,16 @@
         <div class="footer-grid">
             <div class="footer-about">
                 <div class="logo">
-                    <i class="fa-solid fa-snowflake"></i> Jaya Kitchen
+                    <img src="assets/images/logo.jpg" alt="Jaya Kitchen Logo"
+                        style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
                 </div>
-                <p>Kitchen Equipment & Commercial Refrigeration Supplier untuk daerah Lombok, Nusa Tenggara Barat dan sekitarnya.</p>
+                <p>Kitchen Equipment & Commercial Refrigeration Supplier untuk daerah Lombok, Nusa Tenggara Barat dan
+                    sekitarnya.</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/jayakitchenlombok/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/jayakitchenlombok/" target="_blank"><i
+                            class="fa-brands fa-instagram"></i></a>
+                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank"><i
+                            class="fa-brands fa-whatsapp"></i></a>
                     <a href="mailto:jayakitchenlombok@gmail.com"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
@@ -754,10 +900,27 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Google Maps Iframe Placeholder -->
+        <div class="footer-map"
+            style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <!-- Silakan ganti link "src" di bawah ini dengan link embed map toko Anda -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.109355152285!2d116.12644267597334!3d-8.585521791458532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0!2sJaya%20Kitchen!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+                width="100%" height="350" style="border:0; display: block;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
         <div class="footer-bottom">
             <p>&copy; 2026 Jaya Kitchen Lombok. All rights reserved.</p>
         </div>
     </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://api.whatsapp.com/send?phone=628113970087" class="float-wa" target="_blank"
+        aria-label="Chat with us on WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
 
     <script>
         // Navbar Scroll Effect
@@ -773,7 +936,7 @@
         // Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const navLinks = document.getElementById('navLinks');
-        
+
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             const icon = mobileMenuBtn.querySelector('i');
@@ -806,4 +969,5 @@
         });
     </script>
 </body>
+
 </html>
