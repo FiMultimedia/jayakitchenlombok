@@ -382,21 +382,10 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <a href="index.html" class="nav-logo">
-            <img src="assets/icon/android-chrome-512x512.png" alt="Jaya Kitchen Logo" style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
-        </a>
-        <div class="nav-links" id="navLinks">
-            <a href="index.html#home">Home</a>
-            <a href="index.html#about">Tentang Kami</a>
-            <a href="product.html">Produk & Brand</a>
-            <a href="sosmed.html" style="color: var(--secondary);">Social Media</a>
-            <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-contact"><i class="fa-brands fa-whatsapp"></i> Hubungi Kami</a>
-        </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </nav>
+    <?php
+$base_url = '';
+include 'header.php';
+?>
 
     <!-- Page Header -->
     <header class="page-header">
@@ -429,85 +418,6 @@
 <script async src="https://www.instagram.com/embed.js"></script>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="footer-grid">
-            <div class="footer-about">
-                <div class="logo">
-                    <img src="assets/icon/android-chrome-512x512.png" alt="Jaya Kitchen Logo" style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
-                </div>
-                <p>Kitchen Equipment & Commercial Refrigeration Supplier untuk daerah Lombok, Nusa Tenggara Barat dan sekitarnya.</p>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/jayakitchenlombok/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="mailto:jayakitchenlombok@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-contact">
-                <h4 class="footer-title">Informasi Kontak</h4>
-                <ul>
-                    <li>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Jl. A.A. Gde Ngurah no 99, Cakranegara<br>Lombok, Nusa Tenggara Barat<br>Indonesia</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-phone"></i>
-                        <span><a href="tel:08113970087">081 139 700 87</a></span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-envelope"></i>
-                        <span><a href="mailto:jayakitchenlombok@gmail.com">jayakitchenlombok@gmail.com</a></span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-schedule">
-                <h4 class="footer-title">Jam Operasional</h4>
-                <ul>
-                    <li>
-                        <span>Senin - Sabtu</span>
-                        <span>08.00 - 17.00</span>
-                    </li>
-                    <li>
-                        <span>Minggu</span>
-                        <span>Tutup</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Google Maps Iframe Placeholder -->
-        <div class="footer-map" style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <!-- Silakan ganti link "src" di bawah ini dengan link embed map toko Anda -->
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.0188524408522!2d116.1294559!3d-8.5941852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbfb32102c17f%3A0x3253f3eb923a81e4!2sJaya%20Kitchen!5e0!3m2!1sid!2sid!4v1791083600887!5m2!1sid!2sid" width="100%" height="350" style="border:0; display: block;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 Jaya Kitchen Lombok. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://api.whatsapp.com/send?phone=628113970087" class="float-wa" target="_blank" aria-label="Chat with us on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
-
-    <script>
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-    </script>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

@@ -166,16 +166,66 @@
         }
 
         /* Hero Section */
-        .hero {
+        
+        
+        /* Hero Slider Section */
+        .hero-slider {
+            position: relative;
             height: 100vh;
             min-height: 600px;
-            background: linear-gradient(to right, rgba(10, 61, 107, 0.85), rgba(10, 61, 107, 0.4)), url('assets/images/hero.jpg') center/cover;
+            overflow: hidden;
+            background: var(--primary);
+        }
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            z-index: 1;
             display: flex;
             align-items: center;
             padding: 0 5%;
-            color: white;
-            position: relative;
         }
+        .hero-slide.active {
+            opacity: 1;
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            opacity: 0;
+            color: white;
+            transform: translateY(30px);
+        }
+        .hero-slide.active .hero-content {
+            animation: fadeUp 1s ease forwards 0.5s;
+        }
+        .hero-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 3;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .hero-control:hover {
+            background: var(--secondary);
+        }
+        .hero-control.prev { left: 20px; }
+        .hero-control.next { right: 20px; }
+
+
 
         .hero-content {
             max-width: 700px;
@@ -721,41 +771,56 @@
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <a href="#" class="nav-logo">
-            <img src="assets/icon/android-chrome-512x512.png" alt="Jaya Kitchen Logo"
-                style="height: 32px; width: 32px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
-        </a>
-        <div class="nav-links" id="navLinks">
-            <a href="#home">Home</a>
-            <a href="#about">Tentang Kami</a>
-            <a href="product.html">Produk & Brand</a>
-            <a href="sosmed.html">Social Media</a>
-            <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-contact"><i
-                    class="fa-brands fa-whatsapp"></i> Hubungi Kami</a>
-        </div>
-        <button class="mobile-menu-btn" id="mobileMenuBtn">
-            <i class="fa-solid fa-bars"></i>
-        </button>
-    </nav>
+    <?php
+$base_url = '';
+include 'header.php';
+?>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <div class="badge">Supplier Alat Dapur & Pendingin Komersial</div>
-            <h1>Solusi Terbaik untuk <span>Dapur Komersial</span> Anda</h1>
-            <p>Jaya Kitchen Lombok adalah mitra terpercaya Anda untuk kebutuhan perlengkapan dapur komersial, restoran,
-                cafe, dan pendingin ruangan di Nusa Tenggara Barat.</p>
-            <div class="hero-btns">
-                <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-primary">
-                    <i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis
-                </a>
-                <a href="#brands" class="btn-outline">
-                    Lihat Produk
-                </a>
+    
+    
+    <!-- Hero Slider Section -->
+    <section class="hero-slider" id="home">
+        
+        <!-- Slide 1 -->
+        <div class="hero-slide active" style="background: linear-gradient(to right, rgba(10, 61, 107, 0.85), rgba(10, 61, 107, 0.4)), url('assets/images/hero.jpg') center/cover;">
+            <div class="hero-content">
+                <div class="badge">Supplier Alat Dapur & Pendingin Komersial</div>
+                <h1>Solusi Terbaik untuk <span>Dapur Komersial</span> Anda</h1>
+                <p>Jaya Kitchen Lombok adalah mitra terpercaya Anda untuk kebutuhan perlengkapan dapur komersial, restoran,
+                    cafe, dan pendingin ruangan di Nusa Tenggara Barat.</p>
+                <div class="hero-btns">
+                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-primary">
+                        <i class="fa-brands fa-whatsapp"></i> Konsultasi Gratis
+                    </a>
+                    <a href="#brands" class="btn-outline">
+                        Lihat Produk
+                    </a>
+                </div>
             </div>
         </div>
+
+        <!-- Slide 2 -->
+        <div class="hero-slide" style="background: linear-gradient(to right, rgba(10, 61, 107, 0.85), rgba(10, 61, 107, 0.4)), url('assets/images/hero02.jpg') center/cover;">
+            <div class="hero-content">
+                <div class="badge">Kualitas Terbaik & Pelayanan Memuaskan</div>
+                <h1>Peralatan <span>Profesional</span> untuk Bisnis Anda</h1>
+                <p>Tingkatkan efisiensi dan kualitas produksi dapur Anda dengan peralatan berstandar internasional dari Jaya Kitchen Lombok.</p>
+                <div class="hero-btns">
+                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank" class="btn-primary">
+                        <i class="fa-brands fa-whatsapp"></i> Hubungi Kami
+                    </a>
+                    <a href="#brands" class="btn-outline">
+                        Lihat Katalog
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <button class="hero-control prev" onclick="prevSlide()"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="hero-control next" onclick="nextSlide()"><i class="fa-solid fa-chevron-right"></i></button>
     </section>
+
+
 
     <!-- Brands Section -->
     <section class="brands" id="brands">
@@ -763,37 +828,37 @@
         <div class="brand-ticker">
             <div class="brand-ticker-track">
                 <!-- Group 1 -->
-                <a href="product.html#gea" class="brand-item">GEA</a>
-                <a href="product.html#getra" class="brand-item">GETRA</a>
-                <a href="product.html#rsa" class="brand-item">RSA</a>
-                <a href="product.html#crown" class="brand-item">CROWN</a>
-                <a href="product.html#mito" class="brand-item">MITO</a>
-                <a href="product.html#robotcoupe" class="brand-item">ROBOT COUPE</a>
-                <a href="product.html#fomac" class="brand-item">FOMAC</a>
-                <a href="product.html#philips" class="brand-item">PHILIPS</a>
-                <a href="product.html#rinnai" class="brand-item">RINNAI</a>
-                <a href="product.html#meichu" class="brand-item">MEICHU</a>
-                <a href="product.html#starcool" class="brand-item">STAR COOL</a>
-                <a href="product.html#zeppelin" class="brand-item">ZEPPELIN</a>
-                <a href="product.html#hoshizaki" class="brand-item">HOSHIZAKI</a>
-                <a href="product.html#nayati" class="brand-item">NAYATI</a>
-                <a href="product.html#sinmag" class="brand-item">SINMAG</a>
+                <a href="product.php#gea" class="brand-item">GEA</a>
+                <a href="product.php#getra" class="brand-item">GETRA</a>
+                <a href="product.php#rsa" class="brand-item">RSA</a>
+                <a href="product.php#crown" class="brand-item">CROWN</a>
+                <a href="product.php#mito" class="brand-item">MITO</a>
+                <a href="product.php#robotcoupe" class="brand-item">ROBOT COUPE</a>
+                <a href="product.php#fomac" class="brand-item">FOMAC</a>
+                <a href="product.php#philips" class="brand-item">PHILIPS</a>
+                <a href="product.php#rinnai" class="brand-item">RINNAI</a>
+                <a href="product.php#meichu" class="brand-item">MEICHU</a>
+                <a href="product.php#starcool" class="brand-item">STAR COOL</a>
+                <a href="product.php#zeppelin" class="brand-item">ZEPPELIN</a>
+                <a href="product.php#hoshizaki" class="brand-item">HOSHIZAKI</a>
+                <a href="product.php#nayati" class="brand-item">NAYATI</a>
+                <a href="product.php#sinmag" class="brand-item">SINMAG</a>
                 <!-- Group 2 -->
-                <a href="product.html#gea" class="brand-item">GEA</a>
-                <a href="product.html#getra" class="brand-item">GETRA</a>
-                <a href="product.html#rsa" class="brand-item">RSA</a>
-                <a href="product.html#crown" class="brand-item">CROWN</a>
-                <a href="product.html#mito" class="brand-item">MITO</a>
-                <a href="product.html#robotcoupe" class="brand-item">ROBOT COUPE</a>
-                <a href="product.html#fomac" class="brand-item">FOMAC</a>
-                <a href="product.html#philips" class="brand-item">PHILIPS</a>
-                <a href="product.html#rinnai" class="brand-item">RINNAI</a>
-                <a href="product.html#meichu" class="brand-item">MEICHU</a>
-                <a href="product.html#starcool" class="brand-item">STAR COOL</a>
-                <a href="product.html#zeppelin" class="brand-item">ZEPPELIN</a>
-                <a href="product.html#hoshizaki" class="brand-item">HOSHIZAKI</a>
-                <a href="product.html#nayati" class="brand-item">NAYATI</a>
-                <a href="product.html#sinmag" class="brand-item">SINMAG</a>
+                <a href="product.php#gea" class="brand-item">GEA</a>
+                <a href="product.php#getra" class="brand-item">GETRA</a>
+                <a href="product.php#rsa" class="brand-item">RSA</a>
+                <a href="product.php#crown" class="brand-item">CROWN</a>
+                <a href="product.php#mito" class="brand-item">MITO</a>
+                <a href="product.php#robotcoupe" class="brand-item">ROBOT COUPE</a>
+                <a href="product.php#fomac" class="brand-item">FOMAC</a>
+                <a href="product.php#philips" class="brand-item">PHILIPS</a>
+                <a href="product.php#rinnai" class="brand-item">RINNAI</a>
+                <a href="product.php#meichu" class="brand-item">MEICHU</a>
+                <a href="product.php#starcool" class="brand-item">STAR COOL</a>
+                <a href="product.php#zeppelin" class="brand-item">ZEPPELIN</a>
+                <a href="product.php#hoshizaki" class="brand-item">HOSHIZAKI</a>
+                <a href="product.php#nayati" class="brand-item">NAYATI</a>
+                <a href="product.php#sinmag" class="brand-item">SINMAG</a>
             </div>
         </div>
     </section>
@@ -855,123 +920,40 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="footer-grid">
-            <div class="footer-about">
-                <div class="logo">
-                    <img src="assets/icon/android-chrome-512x512.png" alt="Jaya Kitchen Logo"
-                        style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;"> Jaya Kitchen
-                </div>
-                <p>Kitchen Equipment & Commercial Refrigeration Supplier untuk daerah Lombok, Nusa Tenggara Barat dan
-                    sekitarnya.</p>
-                <div class="social-links">
-                    <a href="https://www.instagram.com/jayakitchenlombok/" target="_blank"><i
-                            class="fa-brands fa-instagram"></i></a>
-                    <a href="https://api.whatsapp.com/send?phone=628113970087" target="_blank"><i
-                            class="fa-brands fa-whatsapp"></i></a>
-                    <a href="mailto:jayakitchenlombok@gmail.com"><i class="fa-solid fa-envelope"></i></a>
-                </div>
-            </div>
-
-            <div class="footer-contact">
-                <h4 class="footer-title">Informasi Kontak</h4>
-                <ul>
-                    <li>
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span>Jl. A.A. Gde Ngurah no 99, Cakranegara<br>Lombok, Nusa Tenggara Barat<br>Indonesia</span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-phone"></i>
-                        <span><a href="tel:08113970087">081 139 700 87</a></span>
-                    </li>
-                    <li>
-                        <i class="fa-solid fa-envelope"></i>
-                        <span><a href="mailto:jayakitchenlombok@gmail.com">jayakitchenlombok@gmail.com</a></span>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="footer-schedule">
-                <h4 class="footer-title">Jam Operasional</h4>
-                <ul>
-                    <li>
-                        <span>Senin - Sabtu</span>
-                        <span>08.00 - 17.00</span>
-                    </li>
-                    <li>
-                        <span>Minggu</span>
-                        <span>Tutup</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Google Maps Iframe Placeholder -->
-        <div class="footer-map"
-            style="margin-top: 20px; border-radius: 10px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-            <!-- Silakan ganti link "src" di bawah ini dengan link embed map toko Anda -->
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3945.0188524408522!2d116.1294559!3d-8.5941852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dcdbfb32102c17f%3A0x3253f3eb923a81e4!2sJaya%20Kitchen!5e0!3m2!1sid!2sid!4v1791083600887!5m2!1sid!2sid"
-                width="100%" height="350" style="border:0; display: block;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-
-        <div class="footer-bottom">
-            <p>&copy; 2026 Jaya Kitchen Lombok. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://api.whatsapp.com/send?phone=628113970087" class="float-wa" target="_blank"
-        aria-label="Chat with us on WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <?php include 'footer.php'; ?>
 
     <script>
-        // Navbar Scroll Effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".hero-slide");
+        let slideInterval;
 
-        // Mobile Menu Toggle
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove("active"));
+            if (index >= slides.length) currentSlide = 0;
+            if (index < 0) currentSlide = slides.length - 1;
+            slides[currentSlide].classList.add("active");
+        }
 
-        mobileMenuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+            resetInterval();
+        }
 
-        // Scroll Animation
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: "0px 0px -50px 0px"
-        };
+        function prevSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+            resetInterval();
+        }
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
 
-        document.querySelectorAll('.reveal-left, .reveal-right').forEach(el => {
-            observer.observe(el);
-        });
+        if (slides.length > 0) {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
     </script>
 </body>
 
